@@ -42,4 +42,46 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Mouse-scrub video: mouse on the right = start, mouse on the left = end
+  var video = document.getElementById('scrubVideo');
+  if (video) {
+    video.pause();
+    var targetTime = 0;
+    var currentTime = 0;
+    var duration = 0;
+    var rafId = null;
+
+    function setDuration(){
+      if (isFinite(video.duration) && video.duration > 0) {
+        duration = video.duration;
+      }
+    }
+    video.addEventListener('loadedmetadata', setDuration);
+    video.addEventListener('durationchange', setDuration);
+
+    function tick(){
+      // ease toward target for smooth scrubbing
+      currentTime += (targetTime - currentTime) * 0.15;
+      if (Math.abs(targetTime - currentTime) < 0.001) {
+        currentTime = targetTime;
+      }
+      try { video.currentTime = currentTime; } catch(e){}
+      if (Math.abs(targetTime - currentTime) > 0.001) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
+    }
+
+    window.addEventListener('mousemove', function(e){
+      if (!duration) return;
+      var w = window.innerWidth || 1;
+      // right edge -> 0 (start), left edge -> duration (end)
+      var progress = 1 - (e.clientX / w);
+      progress = Math.max(0, Math.min(1, progress));
+      targetTime = progress * duration;
+      if (rafId === null) rafId = requestAnimationFrame(tick);
+    }, { passive: true });
+  }
 })();
