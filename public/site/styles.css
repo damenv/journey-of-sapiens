@@ -75,6 +75,11 @@ a{color:inherit;text-decoration:none}
 .scene--blend-prev::before{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%);height:32vh}
 .scene--blend-prev .veil{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55))}
 
+/* Camera-tilt parallax backgrounds (scene 1 <-> scene 2) */
+.bg-tilt-up,.bg-tilt-in{will-change:transform;transition:none;transform:scale(1.25)}
+.bg-tilt-up{transform-origin:center top}
+.bg-tilt-in{transform-origin:center bottom}
+
 /* Content */
 .content{position:relative;z-index:2;max-width:1100px;width:100%}
 .content.center{text-align:center;margin:0 auto}
