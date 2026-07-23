@@ -58,8 +58,8 @@ a{color:inherit;text-decoration:none}
 }
 .bg-video{object-fit:cover;width:100%;height:100%;inset:0;transform:scale(1.02)}
 .bg.parallax{transition:transform .2s linear}
-.veil{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.75))}
-.veil.dense{background:linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.9))}
+.veil{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0, 0, 0, 0.5))}
+.veil.dense{background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.5))}
 
 /* Scene transitions - fade between neighbors */
 .scene::before{
