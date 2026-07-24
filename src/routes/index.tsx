@@ -134,15 +134,9 @@ function Home() {
               <article key={c.title} className="so-card">
                 <h3>{c.title}</h3>
                 <p>{c.desc}</p>
-                {c.external ? (
-                  <a href={c.href} className="so-card__link">
-                    {c.cta} →
-                  </a>
-                ) : (
-                  <Link to={c.href} className="so-card__link">
-                    {c.cta} →
-                  </Link>
-                )}
+                <a href={c.href} className="so-card__link">
+                  {c.cta} →
+                </a>
               </article>
             ))}
           </div>
