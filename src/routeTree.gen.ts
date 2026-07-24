@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SubstackRouteImport } from './routes/substack'
+import { Route as RecursosRouteImport } from './routes/recursos'
+import { Route as ProgramasRouteImport } from './routes/programas'
+import { Route as NewsletterRouteImport } from './routes/newsletter'
+import { Route as ElMitoRouteImport } from './routes/el-mito'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SubstackRoute = SubstackRouteImport.update({
+  id: '/substack',
+  path: '/substack',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramasRoute = ProgramasRouteImport.update({
+  id: '/programas',
+  path: '/programas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsletterRoute = NewsletterRouteImport.update({
+  id: '/newsletter',
+  path: '/newsletter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElMitoRoute = ElMitoRouteImport.update({
+  id: '/el-mito',
+  path: '/el-mito',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,102 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/el-mito': typeof ElMitoRoute
+  '/newsletter': typeof NewsletterRoute
+  '/programas': typeof ProgramasRoute
+  '/recursos': typeof RecursosRoute
+  '/substack': typeof SubstackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/el-mito': typeof ElMitoRoute
+  '/newsletter': typeof NewsletterRoute
+  '/programas': typeof ProgramasRoute
+  '/recursos': typeof RecursosRoute
+  '/substack': typeof SubstackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/el-mito': typeof ElMitoRoute
+  '/newsletter': typeof NewsletterRoute
+  '/programas': typeof ProgramasRoute
+  '/recursos': typeof RecursosRoute
+  '/substack': typeof SubstackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/el-mito'
+    | '/newsletter'
+    | '/programas'
+    | '/recursos'
+    | '/substack'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/el-mito'
+    | '/newsletter'
+    | '/programas'
+    | '/recursos'
+    | '/substack'
+  id:
+    | '__root__'
+    | '/'
+    | '/el-mito'
+    | '/newsletter'
+    | '/programas'
+    | '/recursos'
+    | '/substack'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ElMitoRoute: typeof ElMitoRoute
+  NewsletterRoute: typeof NewsletterRoute
+  ProgramasRoute: typeof ProgramasRoute
+  RecursosRoute: typeof RecursosRoute
+  SubstackRoute: typeof SubstackRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/substack': {
+      id: '/substack'
+      path: '/substack'
+      fullPath: '/substack'
+      preLoaderRoute: typeof SubstackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programas': {
+      id: '/programas'
+      path: '/programas'
+      fullPath: '/programas'
+      preLoaderRoute: typeof ProgramasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/newsletter': {
+      id: '/newsletter'
+      path: '/newsletter'
+      fullPath: '/newsletter'
+      preLoaderRoute: typeof NewsletterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/el-mito': {
+      id: '/el-mito'
+      path: '/el-mito'
+      fullPath: '/el-mito'
+      preLoaderRoute: typeof ElMitoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +157,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ElMitoRoute: ElMitoRoute,
+  NewsletterRoute: NewsletterRoute,
+  ProgramasRoute: ProgramasRoute,
+  RecursosRoute: RecursosRoute,
+  SubstackRoute: SubstackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

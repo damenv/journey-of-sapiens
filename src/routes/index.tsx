@@ -24,7 +24,15 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const startHere = [
+type StartCard = {
+  title: string;
+  desc: string;
+  href: string;
+  cta: string;
+  external?: boolean;
+};
+
+const startHere: StartCard[] = [
   {
     title: "El Mito",
     desc: "Descubre la historia detrás de Sapiens Optimizado — el viaje del héroe que no sacrifica lo que ama.",
@@ -44,7 +52,7 @@ const startHere = [
     href: "/substack",
     cta: "Leer última edición",
   },
-] as const;
+];
 
 const featured = [
   {
