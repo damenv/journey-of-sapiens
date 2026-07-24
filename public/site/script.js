@@ -50,7 +50,22 @@
       panTop.style.backgroundPosition = 'center ' + (p * 55) + '%';
       panBot.style.backgroundPosition = 'center ' + (45 + p * 55) + '%';
     }
+
+    // Pillars: reveal labels one by one based on scroll progress through the section,
+    // finishing well before the section is fully scrolled past
+    if (pillarScene && pillarLabels.length) {
+      var prect = pillarScene.getBoundingClientRect();
+      var vh3 = window.innerHeight;
+      var progress = (vh3 * 0.9 - prect.top) / (vh3 * 0.85);
+      progress = Math.max(0, Math.min(1, progress));
+      var shownCount = Math.round(progress * pillarLabels.length);
+      pillarLabels.forEach(function(label, idx){
+        label.classList.toggle('shown', idx < shownCount);
+      });
+    }
   }
+  var pillarScene = document.querySelector('.scene[data-scene="9"]');
+  var pillarLabels = pillarScene ? Array.prototype.slice.call(pillarScene.querySelectorAll('.pillar span')) : [];
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 

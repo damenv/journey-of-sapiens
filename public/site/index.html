@@ -66,7 +66,7 @@
   <section class="scene" data-scene="4">
     <div class="bg" style="background-image:url('./img/dragon.png')"></div>
     <div class="veil dense"></div>
-    <div class="content right">
+    <div class="content right corner-br">
       <p class="kicker reveal">Capítulo IV</p>
       <h2 class="display reveal">Has derrotado al dragón.</h2>
       <p class="lede reveal">
@@ -82,7 +82,7 @@
   <section class="scene" data-scene="5">
     <div class="bg" style="background-image:url('./img/seccion5-heroeherido.png')"></div>
     <div class="veil"></div>
-    <div class="content left">
+    <div class="content left corner-tl">
       <p class="kicker reveal">Capítulo V</p>
       <h2 class="display reveal">Tenía que hacer ese sacrificio para lograrlo.</h2>
       <p class="whisper reveal">— dice el héroe mostrando sus cicatrices</p>
@@ -99,22 +99,26 @@
     </div>
   </section>
 
-  <!-- 7: five eyes -->
-  <section class="scene scene--void" data-scene="7">
-    <div class="bg parallax" style="background-image:url('./img/seccion7-ojos.png')"></div>
-    <div class="veil"></div>
+  <!-- 7a: dark text intro (moved from five-eyes scene) -->
+  <section class="scene scene--black" data-scene="7">
     <div class="content center">
-      <p class="kicker reveal">Capítulo VII</p>      
+      <p class="kicker reveal">Capítulo VII</p>
       <h2 class="display reveal">Este viaje no fue hecho para hacerlo solo.</h2>
       <p class="lede reveal">En este nuevo camino tus ojos se enfocan en lograr tu sueño.</p>
     </div>
+  </section>
+
+  <!-- 7b: five eyes (image only) -->
+  <section class="scene scene--void" data-scene="7b">
+    <div class="bg parallax" style="background-image:url('./img/seccion7-ojos.png')"></div>
+    <div class="veil"></div>
   </section>
 
   <!-- 8: black highlight -->
   <section class="scene scene--black" data-scene="8">
     <div class="content center narrow">
       <p class="kicker reveal">Capítulo VIII</p>
-      <h2 class="display huge reveal">
+      <h2 class="display compact reveal">
         Los <span class="accent">míos</span> se enfocan en encontrar el equilibrio
         para que todo aquello que amas no sea sacrificado en el proceso.
       </h2>
@@ -124,27 +128,27 @@
   <!-- 9: five pillars -->
   <section class="scene scene--void" data-scene="9">
         <div class="bg parallax" style="background-image:url('./img/seccion9-pilares.png')"></div>
-    <div class="content center">
+    <div class="content pillars-content">
       <p class="kicker reveal">Capítulo IX</p>
       <div class="pillars">
         <div class="pillar" data-i="0">
-          <img src="./img/Recurso 13.png" alt="" />
+          <img src="./img/Recurso 13.png" alt="Movimiento" />
           <span>Movimiento</span>
         </div>
         <div class="pillar" data-i="1">
-          <img src="./img/ojosapiens3.png" alt="" />
+          <img src="./img/ojosapiens3.png" alt="Comunicación" />
           <span>Comunicación</span>
         </div>
         <div class="pillar" data-i="2">
-          <img src="./img/ojosapiens1.png" alt="" />
+          <img src="./img/ojosapiens1.png" alt="Estilo de Vida" />
           <span>Estilo de Vida</span>
         </div>
         <div class="pillar" data-i="3">
-          <img src="./img/ojosapiens4.png" alt="" />
+          <img src="./img/ojosapiens4.png" alt="Nutrición" />
           <span>Nutrición</span>
         </div>
         <div class="pillar" data-i="4">
-          <img src="./img/ojosapiens5.png" alt="" />
+          <img src="./img/ojosapiens5.png" alt="Sexualidad" />
           <span>Sexualidad</span>
         </div>
       </div>
