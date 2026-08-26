@@ -69,4 +69,34 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // Descend button: accelerating scroll (slow start, fast finish) to feel
+  // like breaking through a barrier rather than a uniform ease.
+  function easeInQuint(t){ return t * t * t * t * t; }
+
+  function animateScrollTo(targetY, duration){
+    var startY = window.scrollY;
+    var distance = targetY - startY;
+    var startTime = null;
+
+    function step(timestamp){
+      if (startTime === null) startTime = timestamp;
+      var elapsed = timestamp - startTime;
+      var t = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + distance * easeInQuint(t));
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var descendBtn = document.querySelector('[data-descend]');
+  if (descendBtn) {
+    descendBtn.addEventListener('click', function(e){
+      var targetId = descendBtn.getAttribute('href');
+      var target = targetId && document.querySelector(targetId);
+      if (!target) return;
+      e.preventDefault();
+      animateScrollTo(target.getBoundingClientRect().top + window.scrollY, 1100);
+    });
+  }
+
 })();

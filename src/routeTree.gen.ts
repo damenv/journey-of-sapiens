@@ -9,31 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SubstackRouteImport } from './routes/substack'
-import { Route as RecursosRouteImport } from './routes/recursos'
-import { Route as ProgramasRouteImport } from './routes/programas'
-import { Route as NewsletterRouteImport } from './routes/newsletter'
-import { Route as ElMitoRouteImport } from './routes/el-mito'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ElMitoRouteImport } from './routes/el-mito'
+import { Route as NewsletterRouteImport } from './routes/newsletter'
+import { Route as ProgramasRouteImport } from './routes/programas'
+import { Route as RecursosRouteImport } from './routes/recursos'
+import { Route as SubstackRouteImport } from './routes/substack'
 
-const SubstackRoute = SubstackRouteImport.update({
-  id: '/substack',
-  path: '/substack',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RecursosRoute = RecursosRouteImport.update({
-  id: '/recursos',
-  path: '/recursos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProgramasRoute = ProgramasRouteImport.update({
-  id: '/programas',
-  path: '/programas',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NewsletterRoute = NewsletterRouteImport.update({
-  id: '/newsletter',
-  path: '/newsletter',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ElMitoRoute = ElMitoRouteImport.update({
@@ -41,9 +26,24 @@ const ElMitoRoute = ElMitoRouteImport.update({
   path: '/el-mito',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const NewsletterRoute = NewsletterRouteImport.update({
+  id: '/newsletter',
+  path: '/newsletter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramasRoute = ProgramasRouteImport.update({
+  id: '/programas',
+  path: '/programas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubstackRoute = SubstackRouteImport.update({
+  id: '/substack',
+  path: '/substack',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -75,20 +75,10 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/el-mito'
-    | '/newsletter'
-    | '/programas'
-    | '/recursos'
-    | '/substack'
+    '/' | '/el-mito' | '/newsletter' | '/programas' | '/recursos' | '/substack'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/el-mito'
-    | '/newsletter'
-    | '/programas'
-    | '/recursos'
-    | '/substack'
+    '/' | '/el-mito' | '/newsletter' | '/programas' | '/recursos' | '/substack'
   id:
     | '__root__'
     | '/'
@@ -110,32 +100,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/substack': {
-      id: '/substack'
-      path: '/substack'
-      fullPath: '/substack'
-      preLoaderRoute: typeof SubstackRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/recursos': {
-      id: '/recursos'
-      path: '/recursos'
-      fullPath: '/recursos'
-      preLoaderRoute: typeof RecursosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/programas': {
-      id: '/programas'
-      path: '/programas'
-      fullPath: '/programas'
-      preLoaderRoute: typeof ProgramasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/newsletter': {
-      id: '/newsletter'
-      path: '/newsletter'
-      fullPath: '/newsletter'
-      preLoaderRoute: typeof NewsletterRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/el-mito': {
@@ -145,11 +114,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ElMitoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/newsletter': {
+      id: '/newsletter'
+      path: '/newsletter'
+      fullPath: '/newsletter'
+      preLoaderRoute: typeof NewsletterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programas': {
+      id: '/programas'
+      path: '/programas'
+      fullPath: '/programas'
+      preLoaderRoute: typeof ProgramasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/substack': {
+      id: '/substack'
+      path: '/substack'
+      fullPath: '/substack'
+      preLoaderRoute: typeof SubstackRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -166,3 +156,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

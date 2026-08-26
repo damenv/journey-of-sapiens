@@ -158,6 +158,32 @@ a{color:inherit;text-decoration:none}
 }
 .cta:hover{transform:translateY(-3px);box-shadow:0 20px 50px -20px rgba(107,193,154,.9)}
 
+/* Hero actions (hovering CTA pair) */
+.hero-actions{
+  margin-top:40px;
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:center;
+}
+.content.left .hero-actions{justify-content:flex-start}
+.content.right .hero-actions{justify-content:flex-end}
+.cta--ghost{
+  display:inline-block;margin-top:0;
+  padding:16px 32px;
+  font-family:var(--font-display);letter-spacing:.16em;font-size:15px;
+  color:var(--ink);
+  border:1px solid rgba(242,237,224,.35);
+  border-radius:999px;
+  background:rgba(10,15,13,.35);
+  backdrop-filter:blur(6px);
+  transition:.3s var(--ease);
+  text-transform:uppercase;
+}
+.cta--ghost:hover{
+  transform:translateY(-3px);
+  border-color:var(--green-bright);
+  color:var(--green-bright);
+  background:rgba(10,15,13,.55);
+}
+
 /* Scroll hint */
 .scroll-hint{
   position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
