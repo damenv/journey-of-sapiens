@@ -243,6 +243,11 @@
 .so-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -20px rgba(107,193,154,0.7); }
 .so-btn--ghost { background: transparent; color: var(--so-ink); border-color: var(--so-line); }
 .so-btn--ghost:hover { border-color: var(--so-green-bright); color: var(--so-green-bright); box-shadow: none; transform: none; }
+.so-btn:disabled {
+  cursor: not-allowed; opacity: 0.55;
+  transform: none; box-shadow: none;
+}
+.so-btn--ghost:disabled:hover { border-color: var(--so-line); color: var(--so-ink); }
 
 /* Cards */
 .so-card, .so-feature, .so-program, .so-quote {
